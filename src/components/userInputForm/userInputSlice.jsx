@@ -1,16 +1,32 @@
+/* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
-
-const initialState = { value: 42 };
 
 const userInputSlice = createSlice({
   name: 'userInput',
-  initialState,
+  initialState: {
+    hourlyWage: null,
+    hoursWorking: null,
+    livingCosts: null,
+  },
   reducers: {
-    updateUserInput: (state, action) => {
-      console.log('updateUserInput reducer fired', state, action);
+    updateUserHourlyWage: (state, action) => {
+      const { hourlyWage } = action.payload;
+      state.hourlyWage = hourlyWage;
+    },
+    updateUserHoursWorking: (state, action) => {
+      const { hoursWorking } = action.payload;
+      state.hoursWorking = hoursWorking;
+    },
+    updateUserLivingCosts: (state, action) => {
+      const { livingCosts } = action.payload;
+      state.livingCosts = livingCosts;
     },
   },
 });
 
-export const { updateUserInput } = userInputSlice.actions;
+export const {
+  updateUserHourlyWage,
+  updateUserHoursWorking,
+  updateUserLivingCosts,
+} = userInputSlice.actions;
 export default userInputSlice.reducer;
