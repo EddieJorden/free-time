@@ -8,6 +8,7 @@ const userInputSlice = createSlice({
     hoursWorking: null,
     livingCosts: null,
   },
+
   reducers: {
     updateUserHourlyWage: (state, action) => {
       const { hourlyWage } = action.payload;
@@ -30,3 +31,7 @@ export const {
   updateUserLivingCosts,
 } = userInputSlice.actions;
 export default userInputSlice.reducer;
+
+export const selectUserHourlyWage = (state) => state.userInputSlice.hourlyWage;
+export const selectUserHoursWorking = (state) => state.userInputSlice.hoursWorking;
+export const selectUserLivingCosts = (state) => state.userInputSlice.livingCosts;
