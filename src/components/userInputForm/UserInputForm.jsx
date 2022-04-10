@@ -13,21 +13,21 @@ function UserInputForm() {
   const updateHourlyWage = (e) => {
     setHourlyWage(e.target.value);
     dispatch(updateUserHourlyWage({
-      hourlyWage: e.target.value,
+      hourlyWage: Number(e.target.value),
     }));
   };
 
   const updateHoursWorking = (e) => {
     setHoursWorking(e.target.value);
     dispatch(updateUserHoursWorking({
-      hoursWorking: e.target.value,
+      hoursWorking: Number(e.target.value),
     }));
   };
 
   const updateLivingCosts = (e) => {
     setLivingCosts(e.target.value);
     dispatch(updateUserLivingCosts({
-      livingCosts: e.target.value,
+      livingCosts: Number(e.target.value),
     }));
   };
 

@@ -1,15 +1,15 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
 import UserInputForm from './components/userInputForm/UserInputForm';
+import BudgetComponent from './components/budgetComponent/BudgetComponent';
 
 function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         hello world
         <UserInputForm />
+        <BudgetComponent />
       </header>
     </div>
   );
