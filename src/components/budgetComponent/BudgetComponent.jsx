@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import styled from 'styled-components';
+
 import { selectUserHourlyWage, selectUserHoursWorking, selectUserLivingCosts } from '../userInputForm/userInputSlice';
 import BudgetTile from './BudgetTile';
 
@@ -33,7 +34,9 @@ function BudgetComponent() {
         <BudgetTile monthlyIncome={monthlyIncome} percentage={60} category="living expenses" />
         <BudgetTile monthlyIncome={monthlyIncome} percentage={30} category="investing" />
         <BudgetTile monthlyIncome={monthlyIncome} percentage={10} category="savings" />
+
       </div>
+
     </div>
   );
 }
