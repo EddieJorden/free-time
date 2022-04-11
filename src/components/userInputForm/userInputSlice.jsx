@@ -4,9 +4,9 @@ import { createSlice } from '@reduxjs/toolkit';
 const userInputSlice = createSlice({
   name: 'userInput',
   initialState: {
-    hourlyWage: null,
-    hoursWorking: null,
-    livingCosts: null,
+    hourlyWage: 0,
+    hoursWorking: 0,
+    livingCosts: 0,
   },
 
   reducers: {

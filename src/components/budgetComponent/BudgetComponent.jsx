@@ -1,43 +1,39 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector } from 'react-redux';
+import styled from 'styled-components';
 import { selectUserHourlyWage, selectUserHoursWorking, selectUserLivingCosts } from '../userInputForm/userInputSlice';
+import BudgetTile from './BudgetTile';
+
+const ValueDiv = styled.div`
+  color: red
+`;
 
 function BudgetComponent() {
-  const [updateState, setUpdateState] = useState(1);
   const hourlyWage = useSelector(selectUserHourlyWage);
   const hoursWorking = useSelector(selectUserHoursWorking);
   const monthlyIncome = (hourlyWage * hoursWorking) * 4;
   const livingCosts = useSelector(selectUserLivingCosts);
-  console.log('hourlywage selector in budget component', hourlyWage);
-
-  const handleClick = () => {
-    const acc = updateState + 1;
-    setUpdateState(acc);
-  };
+  const overUnder = monthlyIncome - livingCosts;
 
   return (
     <div>
-      <div>Monthly Income</div>
-      <div style={{ color: 'red' }}>
-        {monthlyIncome}
+      <div style={{ display: 'flex', justifyContent: 'space-around', width: '1000px' }}>
+        <div>Monthly Income</div>
+        <ValueDiv>
+          {monthlyIncome}
+        </ValueDiv>
+        <div>Living Costs</div>
+        <ValueDiv>{livingCosts}</ValueDiv>
+        <div>Over Under</div>
+        <ValueDiv>{overUnder}</ValueDiv>
       </div>
-      <div>Living Costs</div>
-      <div style={{ color: 'red' }}>{livingCosts}</div>
-      <div style={{ margin: '42px' }}>
-        50% lving costs/needs is
-      </div>
-      <div>30% wants</div>
-      <div>20% savints</div>
+      <div title="this is the amount you can safely live off of" style={{ margin: '42px' }}>
+        <div />
 
-      <div>portfolio strategy</div>
-      <div>60% safe stable long term investing</div>
-      <div>35% volotile investment business</div>
-      <div>5% risky investment gamling</div>
-      <div />
-      <div>{updateState}</div>
-      <button type="submit" onClick={handleClick}>
-        update state
-      </button>
+        <BudgetTile monthlyIncome={monthlyIncome} percentage={60} category="living expenses" />
+        <BudgetTile monthlyIncome={monthlyIncome} percentage={30} category="investing" />
+        <BudgetTile monthlyIncome={monthlyIncome} percentage={10} category="savings" />
+      </div>
     </div>
   );
 }
