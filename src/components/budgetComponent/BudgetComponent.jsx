@@ -14,6 +14,9 @@ function BudgetComponent() {
 
       <div title="this is the amount you can safely live off of" style={{ margin: '42px' }}>
         <div />
+        <div style={{ color: 'lightBlue', fontSize: '42px', fontWeight: 'bold' }}>
+          Budget
+        </div>
         <BudgetTile monthlyIncome={monthlyIncome} percentage={60} category="living expenses" />
         <BudgetTile monthlyIncome={monthlyIncome} percentage={30} category="investing" />
         <BudgetTile monthlyIncome={monthlyIncome} percentage={10} category="savings" />

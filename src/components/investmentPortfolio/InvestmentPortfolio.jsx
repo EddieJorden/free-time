@@ -12,9 +12,17 @@ function InvestmentPortfolio() {
 
   return (
     <div>
-      <div>portfolio strategy</div>
+      <div style={{
+        fontSize: '42px', color: 'lightYellow', margin: '15px', fontWeight: 'bold',
+      }}
+      >
+        Portfolio Strategy
+      </div>
+      <div style={{ margin: '5px' }}>
+        <div>your investing budget with 30% for investing</div>
+      </div>
       <div />
-      <InvestmentTile investingBudget={monthlyIncome} percentage={30} category="investing" />
+
       <InvestmentTile investingBudget={investingBudget} percentage={60} category="safe stable long term investments" />
       <InvestmentTile investingBudget={investingBudget} percentage={35} category="business, short term investments" />
       <InvestmentTile investingBudget={investingBudget} percentage={5} category="risky highly volotile aka gambling" />

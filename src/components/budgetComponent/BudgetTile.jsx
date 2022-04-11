@@ -14,7 +14,7 @@ const BudgetMessageDiv = styled.div`
 `;
 
 const ValueDiv = styled.div`
-  color: red
+  color: lightBlue
 `;
 
 function BudgetTile({ monthlyIncome = 0, percentage = 0, category = '' }) {

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { debounce } from 'lodash';
 import { useDispatch } from 'react-redux';
+import styled from 'styled-components';
 import { updateUserHourlyWage, updateUserHoursWorking, updateUserLivingCosts } from './userInputSlice';
 
 function UserInputForm() {
@@ -31,16 +32,39 @@ function UserInputForm() {
     }));
   };
 
+  const InputContainer = styled.div`
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    font-size: 22px;
+    color: black
+  `;
+
   return (
     <div>
-      <div style={{ fontSize: '42px', color: 'aquamarine', margin: '15px' }}>How much free time to do you have?</div>
       <div style={{
-        backgroundColor: 'grey', padding: '42px', borderRadius: '15px', display: 'flex', justifyContent: 'space-between', width: '61vw', margin: '42px',
+        fontSize: '42px', color: 'aquamarine', margin: '15px', fontWeight: 'bold',
       }}
       >
-        <input placeholder="hourlyWage" defaultValue={hourlyWage} onChange={debounce(updateHourlyWage, 1000)} />
-        <input placeholder="hoursWorking" defaultValue={hoursWorking} onChange={debounce(updateHoursWorking, 1000)} />
-        <input placeholder="livingCosts" defaultValue={livingCosts} onChange={debounce(updateLivingCosts, 1000)} />
+        How much free time to do you have?
+      </div>
+      <div style={{
+        backgroundColor: 'grey', padding: '42px', borderRadius: '15px', display: 'flex', justifyContent: 'space-around', width: '61vw', margin: '42px',
+      }}
+      >
+        <InputContainer>
+          Hourly Wage
+          <input placeholder="hourly Wage" defaultValue={hourlyWage} onChange={debounce(updateHourlyWage, 1000)} style={{ margin: '5px' }} />
+        </InputContainer>
+        <InputContainer>
+          Hours Per Week
+          <input placeholder="hours Per Week" defaultValue={hoursWorking} onChange={debounce(updateHoursWorking, 1000)} style={{ margin: '5px' }} />
+        </InputContainer>
+        <InputContainer>
+          Living Costs
+          <input placeholder="Living Costs" defaultValue={livingCosts} onChange={debounce(updateLivingCosts, 1000)} style={{ margin: '5px' }} />
+        </InputContainer>
       </div>
     </div>
   );
