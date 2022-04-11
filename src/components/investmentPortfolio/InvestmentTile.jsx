@@ -11,6 +11,7 @@ const BudgetReturnDiv = styled.div`
 const BudgetMessageDiv = styled.div`
   color: white;
   margin-left: 10px;
+  align-items: left;
 `;
 
 const ValueDiv = styled.div`
@@ -24,7 +25,7 @@ function InvestmentTile({ investingBudget = 0, percentage = 0, category = '' }) 
     <div>
       <BudgetReturnDiv>
         <ValueDiv>
-          {investingBudgetAmount}
+          {investingBudgetAmount.toFixed(2)}
         </ValueDiv>
         <BudgetMessageDiv>{`is ${percentage}% of your monthly income for ${category}`}</BudgetMessageDiv>
       </BudgetReturnDiv>

@@ -32,13 +32,16 @@ function UserInputForm() {
   };
 
   return (
-    <div style={{
-      backgroundColor: 'lightBlue', padding: '42px', borderRadius: '15px', display: 'flex', justifyContent: 'space-between', width: '61vw', margin: '42px',
-    }}
-    >
-      <input placeholder="hourlyWage" defaultValue={hourlyWage} onChange={debounce(updateHourlyWage, 1000)} />
-      <input placeholder="hoursWorking" defaultValue={hoursWorking} onChange={debounce(updateHoursWorking, 1000)} />
-      <input placeholder="livingCosts" defaultValue={livingCosts} onChange={debounce(updateLivingCosts, 1000)} />
+    <div>
+      <div style={{ fontSize: '42px', color: 'aquamarine', margin: '15px' }}>How much free time to do you have?</div>
+      <div style={{
+        backgroundColor: 'grey', padding: '42px', borderRadius: '15px', display: 'flex', justifyContent: 'space-between', width: '61vw', margin: '42px',
+      }}
+      >
+        <input placeholder="hourlyWage" defaultValue={hourlyWage} onChange={debounce(updateHourlyWage, 1000)} />
+        <input placeholder="hoursWorking" defaultValue={hoursWorking} onChange={debounce(updateHoursWorking, 1000)} />
+        <input placeholder="livingCosts" defaultValue={livingCosts} onChange={debounce(updateLivingCosts, 1000)} />
+      </div>
     </div>
   );
 }
