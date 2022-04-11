@@ -2,6 +2,7 @@ import React from 'react';
 import './App.css';
 import UserInputForm from './components/userInputForm/UserInputForm';
 import BudgetComponent from './components/budgetComponent/BudgetComponent';
+import InvestmentPortfolio from './components/investmentPortfolio/InvestmentPortfolio';
 
 function App() {
   return (
@@ -10,6 +11,7 @@ function App() {
         hello world
         <UserInputForm />
         <BudgetComponent />
+        <InvestmentPortfolio />
       </header>
     </div>
   );
