@@ -16,7 +16,7 @@ function InvestmentPortfolio() {
       <div />
       <InvestmentTile investingBudget={monthlyIncome} percentage={30} category="investing" />
       <InvestmentTile investingBudget={investingBudget} percentage={60} category="safe stable long term investments" />
-      <InvestmentTile investingBudget={investingBudget} percentage={35} category="volotile market, business, short term investing" />
+      <InvestmentTile investingBudget={investingBudget} percentage={35} category="business, short term investments" />
       <InvestmentTile investingBudget={investingBudget} percentage={5} category="risky highly volotile aka gambling" />
       <div />
     </div>

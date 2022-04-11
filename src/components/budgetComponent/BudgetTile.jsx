@@ -24,7 +24,7 @@ function BudgetTile({ monthlyIncome = 0, percentage = 0, category = '' }) {
     <div>
       <BudgetReturnDiv>
         <ValueDiv>
-          {budgetAmount}
+          {budgetAmount.toFixed(2)}
         </ValueDiv>
         <BudgetMessageDiv>{`is ${percentage}% of your monthly income for ${category}`}</BudgetMessageDiv>
       </BudgetReturnDiv>
