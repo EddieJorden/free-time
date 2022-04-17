@@ -60,6 +60,18 @@ function IncomeComponent() {
     } return monthlyIncome - taxCalculator();
   };
 
+  const timeTillRich = () => {
+    let months = 0;
+    let totalInvestingPower = 0;
+    if (monthlyIncomeAfterTaxes() !== 0) {
+      while (totalInvestingPower < 2000000) {
+        totalInvestingPower += monthlyIncomeAfterTaxes() * 0.40;
+        months += 1;
+      }
+    }
+    return months;
+  };
+
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-around' }}>
@@ -94,8 +106,12 @@ function IncomeComponent() {
         <IncomeItemDiv>
           <div>Free Time</div>
           {freeTime > 95
-            ? <PositiveValueDiv>{freeTime}</PositiveValueDiv>
-            : <NegativeValueDiv>{freeTime}</NegativeValueDiv>}
+            ? <PositiveValueDiv>{`${freeTime} hours per week`}</PositiveValueDiv>
+            : <NegativeValueDiv>{`${freeTime} hours per week`}</NegativeValueDiv>}
+        </IncomeItemDiv>
+        <IncomeItemDiv>
+          <div>Months Until $2 million</div>
+          {`${timeTillRich()} months`}
         </IncomeItemDiv>
       </div>
     </div>
