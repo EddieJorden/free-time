@@ -28,6 +28,38 @@ function IncomeComponent() {
   const totalHoursInWeek = 24 * 7;
   const freeTime = totalHoursInWeek - hoursWorking;
 
+  const taxCalculator = () => {
+    const yearlyIncome = monthlyIncome * 12;
+    if (yearlyIncome <= 9950) {
+      return monthlyIncome * 0.10;
+    }
+    if ((yearlyIncome >= 9951) && (yearlyIncome <= 40525)) {
+      return monthlyIncome * 0.12;
+    }
+    if ((yearlyIncome >= 40526) && (yearlyIncome <= 86375)) {
+      return monthlyIncome * 0.22;
+    }
+    if ((yearlyIncome >= 86376) && (yearlyIncome <= 164925)) {
+      return monthlyIncome * 0.24;
+    }
+    if ((yearlyIncome >= 164926) && (yearlyIncome <= 209425)) {
+      return monthlyIncome * 0.32;
+    }
+    if ((yearlyIncome >= 209426) && yearlyIncome <= 523600) {
+      return monthlyIncome * 0.35;
+    }
+    if ((yearlyIncome >= 523601)) {
+      return monthlyIncome * 0.37;
+    }
+    return 'error';
+  };
+
+  const monthlyIncomeAfterTaxes = () => {
+    if (taxCalculator().isNaN) {
+      return taxCalculator();
+    } return monthlyIncome - taxCalculator();
+  };
+
   return (
     <div>
       <div style={{ display: 'flex', justifyContent: 'space-around' }}>
@@ -38,6 +70,16 @@ function IncomeComponent() {
               {monthlyIncome}
             </NegativeValueDiv>
           )}
+          <div>After Income Tax</div>
+          <PositiveValueDiv>
+            {monthlyIncomeAfterTaxes()
+              ? (
+                <PositiveValueDiv>
+                  {monthlyIncomeAfterTaxes()}
+                </PositiveValueDiv>
+              )
+              : <NegativeValueDiv>{monthlyIncomeAfterTaxes()}</NegativeValueDiv>}
+          </PositiveValueDiv>
         </IncomeItemDiv>
         <IncomeItemDiv>
           <div>Living Costs</div>
