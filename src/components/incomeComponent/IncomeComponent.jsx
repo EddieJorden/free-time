@@ -22,34 +22,56 @@ const PositiveValueDiv = styled.div`
 function IncomeComponent() {
   const hourlyWage = useSelector(selectUserHourlyWage);
   const hoursWorking = useSelector(selectUserHoursWorking);
-  const monthlyIncome = (hourlyWage * hoursWorking) * 4;
+
+  // const monthlyIncome = (hourlyWage * hoursWorking) * 4;
+  const monthlyIncome = () => {
+    let overtimeHours = 0;
+    let regularHours = 0;
+    let totalMonthlyIncome = 0;
+    if (hoursWorking > 40) {
+      overtimeHours = hoursWorking - 40;
+      regularHours = hoursWorking - overtimeHours;
+      totalMonthlyIncome = ((regularHours * hourlyWage) + (overtimeHours * (hourlyWage * 1.5))) * 4;
+      console.log('totalMonthlyIncome', totalMonthlyIncome);
+      console.log('regularHours', regularHours);
+      console.log('overtimeHours', overtimeHours);
+    }
+    if (hoursWorking <= 40) {
+      regularHours = hoursWorking;
+      totalMonthlyIncome = (regularHours * hourlyWage) * 4;
+      console.log('regularHours', regularHours);
+    }
+
+    return totalMonthlyIncome;
+  };
+
   const livingCosts = useSelector(selectUserLivingCosts);
-  const overUnder = monthlyIncome - livingCosts;
+  const overUnder = monthlyIncome() - livingCosts;
   const totalHoursInWeek = 24 * 7;
   const freeTime = totalHoursInWeek - hoursWorking;
 
   const taxCalculator = () => {
-    const yearlyIncome = monthlyIncome * 12;
+    const yearlyIncome = monthlyIncome() * 12;
     if (yearlyIncome <= 9950) {
-      return monthlyIncome * 0.10;
+      return monthlyIncome() * 0.10;
     }
     if ((yearlyIncome >= 9951) && (yearlyIncome <= 40525)) {
-      return monthlyIncome * 0.12;
+      return monthlyIncome() * 0.12;
     }
     if ((yearlyIncome >= 40526) && (yearlyIncome <= 86375)) {
-      return monthlyIncome * 0.22;
+      return monthlyIncome() * 0.22;
     }
     if ((yearlyIncome >= 86376) && (yearlyIncome <= 164925)) {
-      return monthlyIncome * 0.24;
+      return monthlyIncome() * 0.24;
     }
     if ((yearlyIncome >= 164926) && (yearlyIncome <= 209425)) {
-      return monthlyIncome * 0.32;
+      return monthlyIncome() * 0.32;
     }
     if ((yearlyIncome >= 209426) && yearlyIncome <= 523600) {
-      return monthlyIncome * 0.35;
+      return monthlyIncome() * 0.35;
     }
     if ((yearlyIncome >= 523601)) {
-      return monthlyIncome * 0.37;
+      return monthlyIncome() * 0.37;
     }
     return 'error';
   };
@@ -57,7 +79,7 @@ function IncomeComponent() {
   const monthlyIncomeAfterTaxes = () => {
     if (taxCalculator().isNaN) {
       return taxCalculator();
-    } return monthlyIncome - taxCalculator();
+    } return monthlyIncome() - taxCalculator();
   };
 
   const timeTillRich = () => {
@@ -77,9 +99,9 @@ function IncomeComponent() {
       <div style={{ display: 'flex', justifyContent: 'space-around' }}>
         <IncomeItemDiv>
           <div>Monthly Income</div>
-          {monthlyIncome > 0 ? <PositiveValueDiv>{monthlyIncome}</PositiveValueDiv> : (
+          {monthlyIncome() > 0 ? <PositiveValueDiv>{monthlyIncome()}</PositiveValueDiv> : (
             <NegativeValueDiv>
-              {monthlyIncome}
+              {monthlyIncome()}
             </NegativeValueDiv>
           )}
           <div>After Income Tax</div>
